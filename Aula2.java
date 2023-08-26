@@ -5,6 +5,9 @@
  */
 package aula2;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author Alunos
@@ -23,6 +26,22 @@ public class Aula2 {
     Pessoa maria= new Pessoa("Maria", 12, joao, joao);
     Pessoa ronaldo = new Pessoa("Ronaldo", 12, joao, joao);
     
+    //Arvore
+    Pessoa[] arvore = new Pessoa[10];
+    
+    //Avós
+    arvore[0] = new Pessoa("José");
+    arvore[1] = new Pessoa("Maria");
+    
+    //Pais
+    arvore[2] = new Pessoa("Mauiricio", 80);
+    arvore[3] = new Pessoa("Creusa", 76);
+    
+    //Eu
+    arvore[4] = new Pessoa("Jão", 19, arvore[3]);
+    
+    //Meu irmão
+    arvore[5] = new Pessoa("jhonatan", 21, arvore[3]);
   
      
     //Adds Filhos
@@ -35,10 +54,12 @@ public class Aula2 {
     joao.setIrmaos(maria);
     joao.setIrmaos(ronaldo);
     
-    
+    /*
     System.out.println("Nome: " +joao.getNomePessoa() + "| Idade: " + joao.getIdadePessoa() + "| MÃ£e: " + 
     joao.getMaeNome() + "| Pai: " + joao.getPaiNome() + "\nFilhos: " + 
     joao.getNomeFilhos() + "| Qtd: " + joao.qtdFilhos() + "\n" + "IrmÃ£os: " + joao.getNomeIrmaos() + "| Qtd: " + joao.qtdIrmaos());    
-    }
+    }*/
     
+        System.out.println(arvore[4].getNomePessoa() + "=> Mae: " + arvore[4].getMaeNome());
+}
 }
