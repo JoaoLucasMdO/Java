@@ -13,16 +13,15 @@ import java.util.List;
  */
 public class Baralho {
 private List<Cartas> cartas = new ArrayList<>();
-private List<Cartas> baralhoCartas = new ArrayList<>();
-
-public List CriarBaralho(){
+public String mensagem;
+public String CriarBaralho(){
     String naipes[];
     naipes = new String[]{"PAUS", "OUROS", "COPAS", "ESPADAS"};
     String numeroCartas[];
     numeroCartas = new String[]{"UM", "DOIS", "TRES", "QUATRO", "CINCO", "SEIS", "SETE", "OITO" ,"NOVE", "DEZ", "VALETE", "DAMA", "REI"};
     
-for(int i = 0; i < 3; i++){
-    int valor = 0;
+for(int i = 0; i < 4; i++){
+    int valor = 1;
     for(int p = 0; p < 13; p++){
     if(numeroCartas[p] == "VALETE"){
     valor = 8;
@@ -34,22 +33,16 @@ for(int i = 0; i < 3; i++){
        
     else if(numeroCartas[p] == "REI"){
     valor = 10;
-    }
-       
-        
-    else{  
+    }        
     Cartas carta = new Cartas(Naipes.valueOf(naipes[i]), NumerosCartas.valueOf(numeroCartas[p]), valor);
-    
     cartas.add(carta);
-    }
-    
     valor++;  
     }
-
 }
-
-
-return cartas;
+for(int a = 0; a < cartas.size(); a++){
+mensagem += a + " Carta " + "Naipe:" + cartas.get(a).naipe + "\n Numero:" + cartas.get(a).numero + "\n Valor:" + cartas.get(a).valor + "\n" ;
+}
+return mensagem;
 }
 
 }
