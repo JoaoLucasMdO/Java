@@ -11,9 +11,9 @@ public class Aula6 {
      */
     public static void main(String[] args) {
       Fundamental aluno1 = new Fundamental("José", "Masculino", 18);
-      aluno1.setNota("5");
+      aluno1.setNota("10");
       
-      aluno1.exibirNotas();
+        System.out.println(aluno1.exibirNotas());
       
       
     }
