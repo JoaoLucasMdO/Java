@@ -6,7 +6,7 @@
 package Pessoas;
 
 
-public final class Professor extends Funcionarios{
+public final class Professor extends Funcionarios implements SalaVirtual{
     private float salarioHora;
     private float qtdHoras;
     
@@ -22,12 +22,24 @@ public final class Professor extends Funcionarios{
     
     @Override
     public String getNome(){
-    if(super.getGenero().equals("masculino")){
-     return "Professor" + super.nome;
+    if(super.getGenero().equals("Masculino")){
+     return "Professor " + super.nome;
     }
     else{
-    return "Professora" + super.nome;
+    return "Professora " + super.nome;
     }   
+    }
+    
+    @Override
+    public String login(){
+    
+        
+        return "Conectado na Sala Virtual!";
+    }
+    @Override
+    public String logout(){
+    
+        return "Desconectado da Sala Virtual!";
     }
     
 }

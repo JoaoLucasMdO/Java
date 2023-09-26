@@ -24,16 +24,16 @@ package Pessoas;
     @Override
     public String exibirNotas(){
     if(super.nota == 10 || super.nota == 9){
-    return "A";
+    return "Nota:A";
     }
     else if(super.nota == 8 || super.nota == 7){
-    return "B";
+    return "Nota:B";
     }
     else if(super.nota == 6 || super.nota == 5){
-    return "C";
+    return "Nota:C";
     }
     else {
-    return "D";
+    return "Nota:D";
     }
  }
 }

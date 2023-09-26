@@ -1,7 +1,7 @@
 
 package Pessoas;
 
-public final class Colegial extends Alunos {
+public final class Colegial extends Alunos implements SalaVirtual {
     
     public Colegial(String nome, String genero, int idade){
     super(nome, genero, idade);
@@ -14,6 +14,18 @@ public final class Colegial extends Alunos {
     
     @Override
     public String exibirNotas(){
-    return String.valueOf(super.nota);
-    }       
+    return "Nota:" + String.valueOf(super.nota);
+    }
+    
+    @Override
+    public String login(){
+    
+        
+        return "Conectado na Sala Virtual!";
+    }
+    @Override
+    public String logout(){
+    
+        return "Desconectado da Sala Virtual!";
+    }
 }

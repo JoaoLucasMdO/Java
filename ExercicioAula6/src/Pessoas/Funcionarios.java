@@ -13,10 +13,10 @@ public abstract double calculaSalario();
 @Override
 public String getNome(){
 if (super.getGenero().equals("Masculino")){
-return "Sr." + super.nome;
+return "Sr. " + super.nome;
 }
 else{
-return "Sra." + super.nome;
+return "Sra. " + super.nome;
 }
 }
 
