@@ -15,6 +15,10 @@ public final class Professor extends Funcionarios implements SalaVirtual{
     this.salarioHora = salarioHora;
 }
     
+    public void setSalarioHora(float HorasTrabalhadas){
+    this.qtdHoras = HorasTrabalhadas;
+    }
+    
     @Override
     public double calculaSalario(){
     return super.getSalarioBase() + (salarioHora * qtdHoras);

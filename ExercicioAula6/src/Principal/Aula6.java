@@ -16,10 +16,11 @@ public class Aula6 {
       
       aluno1.setNota("10");
       aluno2.setNota("8");
+      prof1.setSalarioHora(15);
       
       System.out.println(prof1.getNome());
-      System.out.println(adm1.getNome());
       System.out.println(prof1.calculaSalario());
+      System.out.println(adm1.getNome());
       System.out.println(adm1.calculaSalario());
         
       /*
