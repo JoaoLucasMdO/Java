@@ -16,17 +16,17 @@ public class Calculo {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        /*
+        
         Triangulo tri1 = new Triangulo(10,20);
         System.out.println(tri1.getTipo());
-        Triangulo tri2 = new Triangulo(10,20,100);
+        Triangulo tri2 = new Triangulo(10,10,35);
         System.out.println(tri2.getTipo());
         Triangulo tri3 = new Triangulo(10,20,90);
         System.out.println(tri3.getTipo());
         Triangulo tri4 = new Triangulo(10,20,80);
         System.out.println(tri4.getTipo());
         
-        
+        /*
         Retangulo quad1 = new Retangulo(3,3);
         System.out.println(quad1.getArea());
         System.out.println(quad1.getPerimetro());
@@ -43,7 +43,7 @@ public class Calculo {
         System.out.println(quad2.getQouR());
         */
         
-        Calculadora calc1 = new Calculadora();
+        /*Calculadora calc1 = new Calculadora();
         calc1.div(10, 5);
         System.out.println(calc1.getResultadoString());
         calc1.mult(10, 5);
@@ -56,7 +56,7 @@ public class Calculo {
         System.out.println(calc1.convertDectoBin(8));
         System.out.println(calc1.getResultadoString());
         System.out.println(calc1.convertBintoDec("101010"));
-        System.out.println(calc1.getResultadoString());
+        System.out.println(calc1.getResultadoString());*/
         
         
     }

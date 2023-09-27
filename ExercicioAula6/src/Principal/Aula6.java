@@ -31,12 +31,12 @@ public class Aula6 {
       */
       
       
-      /*
+      
       System.out.println(prof1.login());
       System.out.println(prof1.logout());
       System.out.println(aluno2.login());
       System.out.println(aluno2.logout());
-      */
+      
     }
     
 }
