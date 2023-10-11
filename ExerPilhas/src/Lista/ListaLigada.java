@@ -13,6 +13,10 @@ public class ListaLigada {
     private No primeiroNo, ultimoNo;
     private int qtdNo;
     
+    public enum TipoOrdenacao {
+    CRESCENTE,DECRESCENTE;
+    }
+    
     public ListaLigada(){
     primeiroNo = null;
     ultimoNo = null;
@@ -64,6 +68,44 @@ public class ListaLigada {
         }   
     }
     }
+   
+   public void adicionar(int valor, TipoOrdenacao tipo){
+       No aux = primeiroNo;
+       int aux2 = valor;
+       int indice = 0;
+       boolean adicionado = false;
+       
+       if(primeiroNo == null){
+       adicionar(valor);
+       }
+       else if(tipo == tipo.CRESCENTE){
+          for(int i = 0; i < qtdNo; i++){
+               if(aux2 <= (int)aux.getInfo()){
+                   indice = i;
+                   adicionado = true;
+                   break;
+               }
+               aux = aux.getProximoNo();
+          }
+          if(adicionado == false){
+          adicionar(valor);
+          }else adicionar(valor, indice);
+          
+       }
+       else if(tipo == tipo.DECRESCENTE){
+           for(int i = 0; i < qtdNo; i++){
+               if(aux2 >= (int)aux.getInfo()){
+                   indice = i;
+                   adicionado = true;
+                   break;
+               }
+               aux = aux.getProximoNo();
+          }
+          if(adicionado == false){
+          adicionar(valor);
+          }else adicionar(valor, indice);
+       }
+   }
     
    public void remover(int indice){
        No aux;
@@ -117,7 +159,53 @@ public class ListaLigada {
     }else  return null;
     }
     
+    public int getLista2(Object item){
+    int indice = 0;
+    boolean encontrado = false;
+    No aux = primeiroNo;
+        for(int i = 0; i < qtdNo; i++){
+               if(item == aux.getInfo()){
+                     indice = i;  
+                     encontrado = true;
+               }
+               aux = aux.getProximoNo();
+          }
+    if(encontrado == false){
+        return -1;
+    }else return indice;
+    }
+    
+    
+    public boolean remover2(Object item){
+    if(getLista2(item) != -1){
+    remover(getLista2(item));
+    return true;
+    }else return false;
+    }
+    
+    public void concatenar(ListaLigada lista){
+    No aux = lista.primeiroNo;
+    
+    for(int i = 0; i < lista.qtdNo; i++){
+    adicionar(aux.getInfo());
+    aux = aux.getProximoNo();
+    }
+    lista.primeiroNo = null;
+    lista.ultimoNo = null;
+    }
+    
     public int getQtd(){
     return this.qtdNo;
+    }
+    
+    public ListaLigada copiar(){
+    ListaLigada listaNova = new ListaLigada();
+    
+    for(int i = 0; i < qtdNo; i++){
+    listaNova.adicionar(getLista(i));
+    
+    }    
+        
+    return listaNova;
     }
 }
