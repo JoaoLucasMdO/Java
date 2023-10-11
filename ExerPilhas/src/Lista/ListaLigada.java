@@ -203,7 +203,6 @@ public class ListaLigada {
     
     for(int i = 0; i < qtdNo; i++){
     listaNova.adicionar(getLista(i));
-    
     }    
         
     return listaNova;
