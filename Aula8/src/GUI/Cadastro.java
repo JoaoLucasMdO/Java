@@ -176,6 +176,7 @@ public class Cadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_GeneroActionPerformed
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
+        controle.addProfessor(Nome.getText(), EnumGenero.FEMININO, Integer.parseInt(Idade.getText()));
         JOptionPane.showMessageDialog(rootPane, "Olá!");
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
