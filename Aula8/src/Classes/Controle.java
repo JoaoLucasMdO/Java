@@ -16,6 +16,11 @@ public class Controle {
     public void addProfessor(String nome, EnumGenero genero, int idade){
         //Criar o Professor
         listaProfessores.add(new Professor(nome, genero, idade));
+    }
     
+    public String ListarPessoa(){
+    
+    
+    return listaProfessores.get(0).getNome();
     }
 }

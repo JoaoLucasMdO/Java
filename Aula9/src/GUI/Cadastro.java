@@ -1,5 +1,6 @@
 package GUI;
 import Classes.*;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -7,12 +8,12 @@ import javax.swing.JOptionPane;
  * @author Alunos
  */
 public class Cadastro extends javax.swing.JFrame {
-    Controle controle;
+    Controle controle = new Controle();
     
     public Cadastro() {
         initComponents();
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -31,8 +32,8 @@ public class Cadastro extends javax.swing.JFrame {
         Genero = new javax.swing.JComboBox<>();
         btnCadastrar = new javax.swing.JButton();
         btnDeletar = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
         Tipo = new javax.swing.JComboBox<>();
+        jLabel5 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         Lista = new java.awt.List();
 
@@ -61,7 +62,7 @@ public class Cadastro extends javax.swing.JFrame {
             }
         });
 
-        Genero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Masculino", "Feminino" }));
+        Genero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "MASCULINO", "FEMININO" }));
         Genero.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 GeneroActionPerformed(evt);
@@ -82,14 +83,24 @@ public class Cadastro extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setText("Tipo:");
-
         Tipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Professor", "Administrativo", "Colegial", "Fundamental", "Todos" }));
+        Tipo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                TipoItemStateChanged(evt);
+            }
+        });
+        Tipo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TipoMouseClicked(evt);
+            }
+        });
         Tipo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TipoActionPerformed(evt);
             }
         });
+
+        jLabel5.setText("Tipo:");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -103,17 +114,13 @@ public class Cadastro extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 337, Short.MAX_VALUE)
                         .addComponent(btnDeletar, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel2))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(12, 12, 12)))
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(Tipo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(Nome)
@@ -136,11 +143,11 @@ public class Cadastro extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(Genero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(Tipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 98, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Tipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 117, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCadastrar)
                     .addComponent(btnDeletar))
@@ -148,6 +155,12 @@ public class Cadastro extends javax.swing.JFrame {
         );
 
         jPanel2.setBackground(new java.awt.Color(153, 153, 255));
+
+        Lista.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ListaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -197,22 +210,30 @@ public class Cadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_GeneroActionPerformed
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-        if(Genero.getSelectedIndex() == 0){
-          if(Tipo.getSelectedIndex() == 0){
-          controle.addProfessor(Nome.getText(), EnumGenero.MASCULINO, Integer.parseInt(Idade.getText()));
-          Lista.add(controle.ListarPessoa());
-          JOptionPane.showMessageDialog(rootPane, "Cadastrado com sucesso!!");
-          } 
-          
-        }
-        else if(Genero.getSelectedIndex() == 1){
-        if(Tipo.getSelectedIndex() == 0){
-          controle.addProfessor(Nome.getText(), EnumGenero.MASCULINO, Integer.parseInt(Idade.getText()));
-          Lista.add(controle.ListarPessoa());
-          JOptionPane.showMessageDialog(rootPane, "Cadastrado com sucesso!");
-          } 
-        }
+        EnumGenero genero = EnumGenero.valueOf(Genero.getItemAt(Genero.getSelectedIndex()));
+        String tipo = Tipo.getItemAt(Tipo.getSelectedIndex()).toString();
         
+        if(JOptionPane.showConfirmDialog(rootPane, "Deseja cadastrar: " + Nome.getText() + " Idade: " + Idade.getText())
+        == JOptionPane.YES_OPTION){
+            if(tipo == "Professor"){
+              controle.addProfessor(Nome.getText(), genero, Integer.parseInt(Idade.getText()));
+              carregaListaProf();
+            }
+            else if(tipo == "Administrativo"){
+            controle.addAdministrativo(Nome.getText(), genero,Integer.parseInt(Idade.getText()));
+            carregaListaAdmin();
+            }
+            else if(tipo == "Colegial"){
+            controle.addColegial(Nome.getText(), genero,Integer.parseInt(Idade.getText()));
+            carregaListaColegial();
+            }
+            else if(tipo == "Fundamental"){
+            controle.addFundamental(Nome.getText(), genero,Integer.parseInt(Idade.getText()));
+            carregaListaFundamental();
+            }
+            JOptionPane.showMessageDialog(rootPane, "Cadastrado com sucesso!");
+        }else JOptionPane.showMessageDialog(rootPane, "Cadastro cancelado!");
+     
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void btnDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarActionPerformed
@@ -220,9 +241,66 @@ public class Cadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDeletarActionPerformed
 
     private void TipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TipoActionPerformed
-        // TODO add your handling code here:
+        String tipo = Tipo.getItemAt(Tipo.getSelectedIndex()).toString();
+        if(tipo == "Professor"){
+        carregaListaProf();
+        }
+        else if(tipo == "Administrativo"){
+        carregaListaAdmin();
+        }
+        else if(tipo == "Fundamental"){
+        carregaListaFundamental();
+        }
     }//GEN-LAST:event_TipoActionPerformed
 
+    private void ListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListaActionPerformed
+        
+    }//GEN-LAST:event_ListaActionPerformed
+
+    private void TipoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TipoMouseClicked
+      
+    }//GEN-LAST:event_TipoMouseClicked
+
+    private void TipoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_TipoItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TipoItemStateChanged
+
+    private void carregaListaProf(){
+        List<Professor> lista= controle.getListaProfessor();
+        Lista.removeAll();
+        for(Object var: lista){
+            Professor p=(Professor) var;
+            Lista.add(p.getNome() + " " + " Idade: " + p.getIdade());
+        }
+    }
+    
+     private void carregaListaAdmin(){
+        List<Administrativo> lista= controle.getListaAdministrativo();
+        Lista.removeAll();
+        for(Object var: lista){
+            Administrativo a=(Administrativo) var;
+            Lista.add(a.getNome() + " " + " Idade: " + a.getIdade());
+        }
+    }
+     
+     private void carregaListaColegial(){
+        List<Colegial> lista= controle.getListaColegial();
+        Lista.removeAll();
+        for(Object var: lista){
+            Colegial c =(Colegial) var;
+            Lista.add(c.getNome() + " " + " Idade: " + c.getIdade());
+        }
+    }
+     
+     private void carregaListaFundamental(){
+        List<Fundamental> lista= controle.getListaFundamental();
+        Lista.removeAll();
+        for(Object var: lista){
+            Fundamental f =(Fundamental) var;
+            Lista.add(f.getNome() + " " + " Idade: " + f.getIdade());
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -269,7 +347,7 @@ public class Cadastro extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
