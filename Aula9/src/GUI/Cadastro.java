@@ -251,6 +251,12 @@ public class Cadastro extends javax.swing.JFrame {
         else if(tipo == "Fundamental"){
         carregaListaFundamental();
         }
+        else if(tipo == "Colegial"){
+        carregaListaColegial();
+        }
+        else if(tipo == "Todos"){
+        carregaListaTodos();
+        }
     }//GEN-LAST:event_TipoActionPerformed
 
     private void ListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListaActionPerformed
@@ -300,6 +306,20 @@ public class Cadastro extends javax.swing.JFrame {
             Lista.add(f.getNome() + " " + " Idade: " + f.getIdade());
         }
     }
+     
+     private void carregaListaTodos(){
+    List<Pessoa> lista = controle.getListaTodos();
+    lista.addAll(controle.getListaProfessor());
+    lista.addAll(controle.getListaAdministrativo());
+    lista.addAll(controle.getListaColegial());
+    lista.addAll(controle.getListaFundamental());
+     Lista.removeAll();
+     for(Object var: lista){
+         Pessoa p = (Pessoa) var;
+         Lista.add(p.getNome() + " " + " Idade: " + p.getIdade());
+        }
+     lista.clear();
+     }
     
     /**
      * @param args the command line arguments

@@ -10,12 +10,14 @@ public class Controle {
     private List<Administrativo> listaAdministrativos;
     private List<Fundamental> listaFundamental;
     private List<Colegial> listaColegial;
+    private List<Pessoa> listaTodos;
     
     public Controle(){
     listaProfessores = new ArrayList<Professor>();
     listaAdministrativos = new ArrayList<Administrativo>();
     listaFundamental = new ArrayList<Fundamental>();
     listaColegial = new ArrayList<Colegial>();
+    listaTodos = new ArrayList<Pessoa>();
     }
     
     //Método para criar um novo professor e adiciona-lo a listaProfessores
@@ -55,4 +57,8 @@ public class Controle {
         return listaFundamental;
     } 
     
+    public java.util.List<Pessoa> getListaTodos() {
+        
+        return listaTodos;
+    } 
 }
