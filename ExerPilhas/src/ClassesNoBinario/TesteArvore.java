@@ -12,6 +12,7 @@ public class TesteArvore {
     arvore.adicionarOrdenado(130);
     arvore.adicionarOrdenado(135);
     
+    System.out.println(arvore.procuraFilho(130));
     }
     
     public static void main(String[] args){
