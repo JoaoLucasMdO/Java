@@ -34,6 +34,10 @@ public class ArvoreBinaria {
         adicionarFilhos(No.getEsquerda(), valor);
         }
     }
-  }  
+  }
+    
+    
+    
+    
     
 }

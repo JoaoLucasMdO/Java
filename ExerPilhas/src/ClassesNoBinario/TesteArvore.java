@@ -11,6 +11,7 @@ public class TesteArvore {
     arvore.adicionarOrdenado(35);
     arvore.adicionarOrdenado(130);
     arvore.adicionarOrdenado(135);
+    
     }
     
     public static void main(String[] args){
