@@ -43,6 +43,7 @@ public class ArvoreBinaria {
   }
   
   private Integer buscaFilho(NoBinario no, Integer valor){
+    boolean encontrado = false;
     this.profundidade ++;
     
     if(no.getInfo().equals(valor)){
