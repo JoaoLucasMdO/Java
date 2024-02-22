@@ -29,7 +29,7 @@ public class TestePilha {
     }
     
     @Test
-    public void EmpilharDoisObjetosDesempilha1(){
+    public void EmpilharDoisObjetosDesempilhaUm(){
     assertTrue(p.vazia());
     p.empilha("Elemento 1");
     p.empilha("Elemento 2");

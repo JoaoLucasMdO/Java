@@ -27,7 +27,7 @@ public class Pilha {
 
     public Object desempilha() {
         topo--;
-       return pilha[topo-1]; 
+       return pilha[topo]; 
     }
 
     public boolean cheia() {
