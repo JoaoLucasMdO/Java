@@ -15,10 +15,7 @@ public class Pilha {
     }
 
     public boolean vazia() {
-        if(topo == 0)
-            return true;
-        else 
-            return false;   
+        return(topo == 0);    
     }   
 
     public Object verificaTopo() {
@@ -31,10 +28,7 @@ public class Pilha {
     }
 
     public boolean cheia() {
-      if(topo == 10)
-          return true;
-      else
-          return false;
+      return(topo == 10);
     }
     
    
