@@ -46,19 +46,19 @@ public class HorasTrabalhadas2 {
         
         if(horaInic < 6){
             total -= 6 - horaInic;
-            horaExtra += (6 - horaInic) * 1.5;
+            horaExtra += (6 - horaInic) * 2;
             
         }
         
         if(horaFim < 6){
             total -= 6 - horaFim;
-            horaExtra += (6 - horaFim) * 1.5;
+            horaExtra += (6 - horaFim) * 2;
             
         }
         
         if(horaInic < 8 && horaInic < 6){
             total -= 8 - horaInic - (6 - horaInic);
-            horaExtra += (8 - horaInic) * 1.5;
+            horaExtra += (8 - horaInic) - (6 - horaInic) * 1.5;
         }else if(horaInic < 8){
             total -= 8 - horaInic;
             horaExtra += (8 - horaInic) * 1.5;  
