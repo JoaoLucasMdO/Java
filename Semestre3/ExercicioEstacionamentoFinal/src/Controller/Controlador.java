@@ -53,10 +53,10 @@ public class Controlador {
              mensagem += (Calendar.getInstance().getTimeInMillis() -  listaVeiculos.get(i).getInicio())/(1000*60);
            }
        }
-        return mensagem + " Minutos";
+        return mensagem;
     }
     
-    public String calculaValor(String periodo, MetricaCalculoEnum metrica, String placa){
+    public String calculaValor(MetricaCalculoEnum metrica, String placa){
        int aux = 0;
        String mensagem = "";
        
@@ -65,12 +65,42 @@ public class Controlador {
             aux = i;
            }
        }
-            
+        long periodo = Calendar.getInstance().getTimeInMillis() -  listaVeiculos.get(aux).getInicio(); 
+        
+        
         if(metrica == MetricaCalculoEnum.UM_QUARTO_HORA){
             Calculo15Minutos calculo = new Calculo15Minutos();
-            mensagem += calculo.calcular(Integer.getInteger(periodo), listaVeiculos.get(aux).getVeiculo());
+            mensagem += calculo.calcular(periodo, listaVeiculos.get(aux).getVeiculo());
+            return mensagem;
         }
-        return mensagem;
+        else if(metrica == MetricaCalculoEnum.DIARIA){
+            CalculoDiaria calculo = new CalculoDiaria();
+            mensagem += calculo.calcular(periodo, listaVeiculos.get(aux).getVeiculo());
+            return mensagem;
+        }
+        else if(metrica == MetricaCalculoEnum.HORA){
+            CalculoHorista calculo = new CalculoHorista();
+            mensagem += calculo.calcular(periodo, listaVeiculos.get(aux).getVeiculo());
+            return mensagem;
+        }
+        else{
+            List<String> lista = new ArrayList();
+            
+            lista.add(calculaValor(MetricaCalculoEnum.DIARIA, placa));
+            lista.add(calculaValor(MetricaCalculoEnum.HORA, placa));
+            lista.add(calculaValor(MetricaCalculoEnum.UM_QUARTO_HORA, placa));
+            
+            int aux1 = 0;
+            for(int i = 0; i < lista.size(); i++){
+                
+                if(Integer.parseInt(lista.get(i)) > aux1){
+                    aux1 = Integer.parseInt(lista.get(i));
+                }
+            }
+            mensagem += aux1;     
+            return mensagem;
+        }
+        
     }
     
     public void finalizarConta(String placaVeiculo,MetricaCalculoEnum metrica) throws Exception{

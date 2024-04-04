@@ -438,11 +438,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_cboxVeiculosActionPerformed
 
     private void cboxMetricaCalculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboxMetricaCalculoActionPerformed
-        
+        if(cboxVeiculos.getSelectedItem() != null){
         String veiculo = cboxVeiculos.getSelectedItem().toString();
-        txtbValorEstacionamento.setText(controle.calculaValor(txtbPeriodoPermanencia.getText(), 
+        txtbValorEstacionamento.setText(controle.calculaValor( 
                 MetricaCalculoEnum.valueOf(cboxMetricaCalculo.getSelectedItem().toString()),
                 veiculo));
+        }
+        
         
         /*Calcula o valor utilizando a metrica de calculo selecionada. */
         
