@@ -351,9 +351,19 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenu1.setText("File");
 
         jMenuItem1.setText("Salvar");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem1);
 
         jMenuItem2.setText("Abrir");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem2);
 
         jMenuBar1.add(jMenu1);
@@ -419,7 +429,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void btoFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btoFinalizarActionPerformed
         try{
-        controle.finalizarConta(cboxVeiculos.getSelectedItem().toString(), MetricaCalculoEnum.valueOf(cboxMetricaCalculo.getSelectedItem().toString()));
+        controle.finalizarConta(cboxVeiculos.getSelectedItem().toString());
+        atualizaListaVeiculos();
         }catch(Exception e){
             JOptionPane.showMessageDialog(rootPane, e.getMessage());
         }
@@ -444,8 +455,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 MetricaCalculoEnum.valueOf(cboxMetricaCalculo.getSelectedItem().toString()),
                 veiculo));
         }
-        
-        
         /*Calcula o valor utilizando a metrica de calculo selecionada. */
         
     }//GEN-LAST:event_cboxMetricaCalculoActionPerformed
@@ -461,6 +470,30 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void cboxMetricaCalculoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboxMetricaCalculoMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_cboxMetricaCalculoMouseClicked
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+            try{
+        controle.salvar();
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(rootPane, e.getMessage());
+        }
+        
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        try{
+        controle.carregar();
+        atualizaListaVeiculos();
+        for(int i = 0; i < controle.carregarPlacas().size(); i++){
+        cboxVeiculos.addItem(controle.carregarPlacas().get(i).toString());
+        }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(rootPane, e.getMessage());
+        }
+        
+        
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     
 

@@ -12,7 +12,7 @@ public class CalculoDiaria implements CalculoValor, Serializable{
         long tempoPadrao= 24*60*60*1000;
         double valorDiaria=veiculo.getTipo().vinteQuatroHoras;
         
-        return valorDiaria * Math.ceil(periodo / tempoPadrao);
+        return Math.ceil(valorDiaria * periodo / tempoPadrao);
     }
     
 }

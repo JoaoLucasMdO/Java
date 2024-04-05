@@ -50,7 +50,7 @@ public class Controlador {
        for(int i = 0; i < listaVeiculos.size(); i++){
        
            if(placa.equals( listaVeiculos.get(i).getVeiculo().getPlaca())){
-             mensagem += (Calendar.getInstance().getTimeInMillis() -  listaVeiculos.get(i).getInicio())/(1000*60);
+             mensagem += (Calendar.getInstance().getTimeInMillis() -  listaVeiculos.get(i).getInicio())/(1000*60*60);
            }
        }
         return mensagem;
@@ -65,8 +65,8 @@ public class Controlador {
             aux = i;
            }
        }
-        long periodo = Calendar.getInstance().getTimeInMillis() -  listaVeiculos.get(aux).getInicio(); 
-        
+        long periodo = Calendar.getInstance().getTimeInMillis() -  listaVeiculos.get(aux).getInicio();
+        double hora = periodo / (1000*60*60);
         
         if(metrica == MetricaCalculoEnum.UM_QUARTO_HORA){
             Calculo15Minutos calculo = new Calculo15Minutos();
@@ -84,36 +84,64 @@ public class Controlador {
             return mensagem;
         }
         else{
-            List<String> lista = new ArrayList();
-            
-            lista.add(calculaValor(MetricaCalculoEnum.DIARIA, placa));
-            lista.add(calculaValor(MetricaCalculoEnum.HORA, placa));
-            lista.add(calculaValor(MetricaCalculoEnum.UM_QUARTO_HORA, placa));
-            
-            int aux1 = 0;
-            for(int i = 0; i < lista.size(); i++){
-                
-                if(Integer.parseInt(lista.get(i)) > aux1){
-                    aux1 = Integer.parseInt(lista.get(i));
-                }
+            if(hora < 1){
+                Calculo15Minutos calculo = new Calculo15Minutos();
+                mensagem += calculo.calcular(periodo, listaVeiculos.get(aux).getVeiculo());
             }
-            mensagem += aux1;     
+            else if(hora >= 1 && hora < 12){
+                CalculoHorista calculo = new CalculoHorista();
+                mensagem += calculo.calcular(periodo, listaVeiculos.get(aux).getVeiculo());
+            }
+            else{
+                CalculoDiaria calculo = new CalculoDiaria();
+                mensagem += calculo.calcular(periodo, listaVeiculos.get(aux).getVeiculo());
+            }
+               
             return mensagem;
         }
         
     }
     
-    public void finalizarConta(String placaVeiculo,MetricaCalculoEnum metrica) throws Exception{
-        //Finaliza a conta, utilizando a metrica de calculo recebida como paramentro.
-        // Se a metrica for AUTOMATICO, o sistema deverá verificar a opção mais barata e utiliza-la
+    public List carregarPlacas(){
+        List<String> placas = new ArrayList<String>();
         
+       for(int i = 0; i < listaVeiculos.size(); i++){
+       placas.add(listaVeiculos.get(i).getVeiculo().getPlaca());
+       }
+        return placas;
+    }
+    
+    public void finalizarConta(String placa) throws Exception{
+        //Finaliza a conta, utilizando a metrica de calculo recebida como parametro.
         // Altera o status para fechado e salva o registro.
         //Se valor da conta for zero retorna um erro.
-        
+        int aux = 0;
+        for(int i = 0; i < listaVeiculos.size(); i++){
+           if(placa.equals( listaVeiculos.get(i).getVeiculo().getPlaca())){
+            aux = i;
+           }
+       }
+       listaVeiculos.get(aux).setFim(Calendar.getInstance().getTimeInMillis());
+       listaVeiculos.get(aux).setStatus(StatusConta.FECHADO); 
         //Se não for possivel registra no BD, salve um backup local da listaVeiculos;
         //Utilize o objeto DAO  
     }
-    
+    public void salvar(){
+        PersistenciaDados salvar = new PersistenciaDados();
+        try{
+        salvar.salvarBackupLocal(listaVeiculos);
+        }catch(Exception e){
+          
+        }
+    }
+    public void carregar(){
+    PersistenciaDados carregar = new PersistenciaDados();
+    try{
+        listaVeiculos = carregar.carregarBackup();
+        }catch(Exception e){
+          
+        }
+    }
  
     
 }

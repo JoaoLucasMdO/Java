@@ -12,7 +12,8 @@ import java.util.List;
 
 public class PersistenciaDados {
     
-    String caminhoPadrao= "C:\\Backup_Estacionamento";
+     private List<ContaVeiculo> listaVeiculos;
+    String caminhoPadrao= "C:\\Users\\Alunos\\Desktop\\Teste\\Estacionamento";
     int countBackup=0;
     public PersistenciaDados() {
     }
@@ -27,6 +28,17 @@ public class PersistenciaDados {
         gravarBackup(caminhoPadrao + "backup"+ countBackup+".dat", listaRegistros);
         return false;
     }
+    public List carregarBackup(){
+        
+        try{
+        listaVeiculos = (List)lerBackup(caminhoPadrao + "backup"+ countBackup+".dat");
+    
+        }catch(Exception e){
+        
+        }
+        return listaVeiculos;
+    }
+    
     private void gravarBackup(String caminho, Object objeto) throws FileNotFoundException, IOException{        
         FileOutputStream outFile = new FileOutputStream(caminho);
         ObjectOutputStream s = new ObjectOutputStream(outFile);
