@@ -1,7 +1,7 @@
 
 package Model.DAO;
 
-import Model.Estacionamento.ContaVeiculo;
+import Model.Classes.ContaVeiculo;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -12,7 +12,7 @@ import java.util.List;
 
 public class PersistenciaDados {
     
-    private List<ContaVeiculo> listaVeiculos;
+     private List<ContaVeiculo> listaVeiculos;
     String caminhoPadrao= "C:\\Users\\Alunos\\Desktop\\Teste\\Estacionamento";
     int countBackup=0;
     public PersistenciaDados() {
